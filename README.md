@@ -9,18 +9,32 @@ Aplikasi ini mendorong pola hidup sehat melalui pilihan makan yang tepat dan keb
 #🚀 Fitur Utama
 
 • Rekomendasi menu berdasarkan kebutuhan pengguna
+
 • Tracking progres diet & berat badan
+
 • Tips nutrisi dan informasi gizi
+
 • Pengingat makan dan tujuan diet
+
 • UI sederhana dan mudah digunakan
+
 • Konten motivasi untuk menjaga konsistensi diet
 
+
 #💻 Bahasa
+
 • Frontend: HTML, CSS, JavaScript, React
+
 • Backend: Node.js + Express
+
 • Database: PostgreSQL
 
+
 #🧠 Tim Pengembang
+
 • Nailah
+
 • Nabila
+
 • Badzlina
+
