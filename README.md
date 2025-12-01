@@ -9,7 +9,7 @@ Aplikasi ini mendorong pola hidup sehat melalui pilihan makan yang tepat dan keb
 ## **🚀 Fitur Utama**
 
 * Rekomendasi menu berdasarkan kebutuhan pengguna
-* * Rekomendasi dan panduan olahraga
+* Rekomendasi dan panduan olahraga
 * Tracking progres diet & berat badan
 * Tips nutrisi dan informasi gizi
 * UI sederhana dan mudah digunakan
