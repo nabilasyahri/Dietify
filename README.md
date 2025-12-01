@@ -24,6 +24,6 @@ Aplikasi ini mendorong pola hidup sehat melalui pilihan makan yang tepat dan keb
 ## **🧠 Tim Pengembang**
 |Nama|Peran|
 |-----|-----|
-|Nailah|UI/UX desain|
-|Nabila|UI/UX desain|
-|Badzlina|-|
+|Nailah|Designer & Developer|
+|Nabila|Designer & Developer|
+|Badzlina|Designer & Developer|
