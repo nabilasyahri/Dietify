@@ -1,0 +1,420 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --primary: #4CAF50;
+  --primary-dark: #388E3C;
+  --secondary: #2196F3;
+  --accent: #FF9800;
+  --light: #f5f7fa;
+  --dark: #333;
+  --gray: #666;
+  --white: #fff;
+  --shadow: 0 5px 15px rgba(0,0,0,0.1);
+  --shadow-lg: 0 15px 30px rgba(0,0,0,0.15);
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+    sans-serif;
+  background-color: var(--light);
+  color: var(--dark);
+  line-height: 1.6;
+}
+
+.app {
+  min-height: 100vh;
+}
+
+.navbar {
+  background-color: var(--white);
+  box-shadow: var(--shadow);
+  padding: 15px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.nav-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+
+.logo h1 {
+  color: var(--primary);
+  font-size: 24px;
+  font-weight: 700;
+}
+
+.nav-links {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-link {
+  background: none;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-size: 16px;
+  font-weight: 500;
+  color: var(--dark);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.nav-link:hover {
+  background-color: rgba(76, 175, 80, 0.1);
+  color: var(--primary);
+}
+
+.nav-link.active {
+  background-color: var(--primary);
+  color: white;
+}
+
+.main-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+.page-content {
+  padding: 60px 20px;
+  text-align: center;
+}
+
+.page-content h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+  color: var(--primary);
+}
+
+.page-content p {
+  font-size: 18px;
+  color: var(--gray);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 60px 20px;
+  margin-bottom: 40px;
+  background: linear-gradient(135deg, #e3f2fd 0%, #f3e5f5 100%);
+  border-radius: 20px;
+}
+
+.hero-title {
+  font-size: 48px;
+  font-weight: 800;
+  line-height: 1.2;
+  margin-bottom: 20px;
+  color: var(--dark);
+}
+
+.highlight {
+  color: var(--primary);
+  position: relative;
+}
+
+.highlight::after {
+  content: '';
+  position: absolute;
+  bottom: 5px;
+  left: 0;
+  width: 100%;
+  height: 10px;
+  background-color: rgba(76, 175, 80, 0.2);
+  z-index: -1;
+  border-radius: 5px;
+}
+
+.hero-subtitle {
+  font-size: 24px;
+  color: var(--gray);
+  margin-bottom: 30px;
+}
+
+.hero-buttons {
+  display: flex;
+  gap: 15px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+.btn {
+  padding: 14px 28px;
+  border-radius: 30px;
+  border: none;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-color: var(--primary);
+  color: white;
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(76, 175, 80, 0.3);
+}
+
+.btn-secondary {
+  background-color: transparent;
+  color: var(--primary);
+  border: 2px solid var(--primary);
+}
+
+.btn-secondary:hover {
+  background-color: rgba(76, 175, 80, 0.1);
+  transform: translateY(-2px);
+}
+
+/* Workouts Section */
+.workouts {
+  padding: 40px 0 60px;
+}
+
+.section-title {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 40px;
+  color: var(--dark);
+}
+
+.workout-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 25px;
+  margin-bottom: 40px;
+}
+
+.workout-card {
+  background-color: var(--white);
+  border-radius: 15px;
+  padding: 25px;
+  box-shadow: var(--shadow);
+  transition: all 0.3s ease;
+  border: 1px solid rgba(0,0,0,0.05);
+}
+
+.workout-card:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--shadow-lg);
+}
+
+.workout-icon {
+  font-size: 40px;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+.workout-card h3 {
+  font-size: 20px;
+  margin-bottom: 12px;
+  color: var(--dark);
+  text-align: center;
+}
+
+.workout-desc {
+  color: var(--gray);
+  font-size: 14px;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  text-align: center;
+  min-height: 60px;
+}
+
+.workout-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.duration {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  color: var(--gray);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.intensity {
+  padding: 6px 15px;
+  border-radius: 20px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.intensity.Low {
+  background-color: rgba(76, 175, 80, 0.15);
+  color: #2E7D32;
+}
+
+.intensity.Medium {
+  background-color: rgba(255, 152, 0, 0.15);
+  color: #EF6C00;
+}
+
+.intensity.High {
+  background-color: rgba(244, 67, 54, 0.15);
+  color: #C62828;
+}
+
+.start-btn {
+  width: 100%;
+  padding: 12px;
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.start-btn:hover {
+  background-color: var(--primary-dark);
+  transform: scale(1.02);
+}
+
+/* Diet Tips */
+.diet-tips {
+  padding: 40px 0;
+}
+
+.diet-tips h2 {
+  text-align: center;
+  font-size: 36px;
+  margin-bottom: 30px;
+  color: var(--dark);
+}
+
+.tip-card {
+  background-color: var(--white);
+  border-radius: 20px;
+  padding: 30px;
+  box-shadow: var(--shadow);
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.tip-icon {
+  font-size: 60px;
+  flex-shrink: 0;
+}
+
+.tip-content h3 {
+  font-size: 24px;
+  color: var(--primary);
+  margin-bottom: 10px;
+}
+
+.tip-content p {
+  color: var(--gray);
+  margin-bottom: 20px;
+  font-size: 16px;
+}
+
+.water-tracker {
+  background-color: rgba(76, 175, 80, 0.1);
+  padding: 20px;
+  border-radius: 15px;
+  text-align: center;
+}
+
+.water-bottles {
+  display: flex;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 15px;
+  flex-wrap: wrap;
+}
+
+.water-bottle {
+  width: 30px;
+  height: 45px;
+  border: 2px solid var(--primary);
+  border-radius: 6px;
+  transition: all 0.3s ease;
+}
+
+.water-bottle.filled {
+  background-color: var(--primary);
+}
+
+.water-tracker p {
+  color: var(--primary);
+  font-weight: 600;
+  margin: 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .nav-content {
+    flex-direction: column;
+    gap: 15px;
+  }
+  
+  .nav-links {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  
+  .hero-title {
+    font-size: 36px;
+  }
+  
+  .hero-subtitle {
+    font-size: 20px;
+  }
+  
+  .hero-buttons {
+    flex-direction: column;
+  }
+  
+  .tip-card {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  .tip-icon {
+    font-size: 48px;
+  }
+  
+  .section-title,
+  .diet-tips h2,
+  .page-content h2 {
+    font-size: 28px;
+  }
+  
+  .workout-grid {
+    grid-template-columns: 1fr;
+  }
+}
