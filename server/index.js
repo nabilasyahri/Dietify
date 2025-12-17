@@ -94,5 +94,5 @@ app.put('/api/progress', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log(`Server berjalan di port ${port}`);
+  console.log('Server berjalan di port ${port}');
 });
