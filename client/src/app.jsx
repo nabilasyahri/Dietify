@@ -68,7 +68,67 @@ function App() {
       category: 'exercise', 
       link: 'https://www.youtube.com/watch?v=Eml2xnoLpYE' 
     },
+    { 
+      id: 5, 
+      title: 'Wall Workspace', 
+      duration: '15 min', 
+      intensity: 'Low', 
+      icon: '🧱', 
+      desc: 'Stability & posture support.', 
+      category: 'exercise', 
+      link: 'https://youtube.com/shorts/OOUdZAdemRI?si=8_XMf9uMmSB6Jylj' 
+    },
+        { 
+      id: 6, 
+      title: 'Metabolic Blast', 
+      duration: '15 min', 
+      intensity: 'High', 
+      icon: '🥊', 
+      desc: 'Max calorie shredding.', 
+      category: 'workout', 
+      link: 'https://youtu.be/7lLLBC3ppNY?si=wWdAuFjfOpqbtIQD' 
+    },
+
   ]
+
+  const educationalContent = [
+  { 
+    id: 101, 
+    title: 'Cara pemanasan yang Benar', 
+    desc: 'Teknik dasar pemanasan.', 
+    duration: '6 min', 
+    intensity: 'Education', 
+    icon: '🏃', 
+    link: 'https://youtu.be/LBUpt3ymFHQ?si=AobRExArUVRePc0n' 
+  },
+  { 
+    id: 102, 
+    title: 'Pentingnya Rest Day', 
+    desc: 'Kenapa istirahat krusial bagi otot.', 
+    duration: '13 min', 
+    intensity: 'Knowledge', 
+    icon: '🛌', 
+    link: 'http://www.youtube.com/watch?v=PxSCQ8IC9xw' 
+  },
+  { 
+    id: 103, 
+    title: 'Edukasi pemula', 
+    desc: 'Kesalahan pemula saat berolahraga.', 
+    duration: '6 min', 
+    intensity: 'Educatiom', 
+    icon: '🏋️‍♂️', 
+    link: 'https://youtu.be/p_3ywg5vhjY?si=3QaHz9Wjkm7pXcMA' 
+  },
+  { 
+    id: 104, 
+    title: 'Program Latihan', 
+    desc: 'Panduan menyusun jadwal latihan.', 
+    duration: '21 min', 
+    intensity: 'Guide', 
+    icon: '📝', 
+    link: 'http://www.youtube.com/watch?v=rN92rbUoQDE' 
+  }
+];
 
   const healthyRecipes = [
     { 
@@ -112,8 +172,75 @@ function App() {
       ingredients: ['500ml air mineral', '1/2 buah lemon', 'Beberapa lembar daun mint'], 
       steps: ['Iris tipis buah lemon.', 'Masukkan lemon dan daun mint ke dalam botol air.', 'Simpan di kulkas minimal 2 jam.', 'Minum sepanjang hari.'], 
       tips: 'Jangan diamkan lebih dari 24 jam agar tidak pahit.' 
+    },
+
+    { 
+      id: 7, name: 'Tortilla Wrap', calories: '300 kalori', prepTime: '8 menit', difficulty: 'Mudah', icon: '🌯', category: 'Makanan pokok', type: 'Lunch', 
+      description: 'Menu "on-the-go" jika sedang sedang sibuk.', 
+      ingredients: ['1 lembar kulit tortilla', 'Irisan dada ayam', 'Selada dan parutan wortel'], 
+      steps: ['Tata semua bahan di atas tortilla.', 'Gulung kulit tortila.', 'Panggang sebentar di teflon jika ingin garing.'], 
+      tips: 'berikan Greek yogurt polos sebagai dressing pengganti mayones agar lebih rendah kalori.' 
+    },
+
+    { 
+      id: 8, name: 'Orak-Arik Telur Bayam', calories: '300 kalori', prepTime: '8 menit', difficulty: 'Mudah', icon: '🍳', category: 'Sarapan', type: 'Breakfast', 
+      description: 'Menu hangat kaya zat besi.', 
+      ingredients: ['2 butir telur', 'Segenggam bayam', 'sedikit tomat'], 
+      steps: ['Tumis bayam dan tomat sebentar', 'Masukkan telur yang sudah dikocok.', 'Aduk rata sampai matang.'], 
+      tips: 'Gunakan sedikit minyak atau cooking spray.' 
+    },
+
+     { 
+      id: 9, name: 'Iced Green Tea Honey', calories: '25 kalori', prepTime: '8 menit', difficulty: 'Mudah', icon: '🍵', category: 'Minuman', type: 'Drink', 
+      description: 'Teh hijau pembakar lemak.', 
+      ingredients: ['1 kantong teh hijau', 'air panas', 'es batu', '1 sdt madu murni'], 
+      steps: ['Seduh teh', 'Tunggu agak dingin.', 'Tambahkan madu dan es batu.'], 
+      tips: 'Jangan campur madu saat air mendidih.' 
+    },
+
+     { 
+      id: 10, name: 'Sup Ayam Sayur Bening', calories: '200 kalori', prepTime: '15 menit', difficulty: 'Sedang', icon: '🍲', category: 'Lauk protein', type: 'Dinner', 
+      description: 'Comfort food penghidrasi tubuh.', 
+      ingredients: ['100g dada ayam (potong dadu)', 'wortel', 'buncis', 'daun seldri', 'bawang putih geprek', 'garam', 'lada putih'], 
+      steps: ['Rebus ayam hingga matang', 'Masukkan sayuran.', 'Tambahkan bumbu.', 'Masak hingga sayur empuk'], 
+      tips: 'jangan masak ayam terlalu lama.' 
+    },
+
+     { 
+      id: 11, name: 'Apple Peanut Butter Toast', calories: '220 kalori', prepTime: '3 menit', difficulty: 'Mudah', icon: '🥪', category: 'Sarapan', type: 'Breakfast', 
+      description: 'Roti dengan tekstur yang renyah dan manis.', 
+      ingredients: ['1 lembar roti gandum', '1 sdm selai kacang (tanpa gula)', 'iris tipis ½ buah apel'], 
+      steps: ['Panggang roti', 'Oleskan selai kacang di atas roti.', 'tata irisan apel.'], 
+      tips: 'taburkan sedikit kayu manis bubuk.' 
+    },
+
+     { 
+      id: 12, name: 'Rice Bowl Ayam Teriyaki', calories: '350 kalori', prepTime: '12 menit', difficulty: 'Sedang', icon: '🍱', category: 'Makanan pokok', type: 'Lunch', 
+      description: 'Menu resto mudah dirumah.', 
+      ingredients: ['3-4 sdm nasi merah', '100g dada ayam (potong kotak)', 'brokoli', 'sedikit saus teriyaki'], 
+      steps: ['Tumis ayam di teflon dengan sedikit minyak zaitun hingga matang', 'Masukkan brokoli dan saus teriyaki.', 'Sajikan di atas nasi merah.'], 
+      tips: 'jangan masak ayam terlalu lama.' 
     }
   ]
+
+  // Fungsi untuk menghitung BMI
+const calculateBMI = (weight, heightCm) => {
+  if (!weight || !heightCm) return null;
+  const heightMeters = heightCm / 100;
+  const bmi = (weight / (heightMeters * heightMeters)).toFixed(1);
+  
+  let status = "";
+  let color = "";
+  
+  if (bmi < 18.5) { status = "Underweight"; color = "#3498db"; }
+  else if (bmi < 25) { status = "Normal"; color = "#2ecc71"; }
+  else if (bmi < 30) { status = "Overweight"; color = "#f1c40f"; }
+  else { status = "Obese"; color = "#e74c3c"; }
+  
+  return { value: bmi, status, color };
+};
+
+const bmiResult = calculateBMI(userProgress?.current_weight, 170); // Ganti 170 dengan input tinggi badan user nantinya
 
   // API ACTIONS 
   const handleAuth = async (e) => {
@@ -304,6 +431,26 @@ function App() {
                             ))}
                         </div>
                     </div>
+
+{/* KATEGORI 3: EDUCATIONAL */}
+        <div className="sport-section" style={{ marginTop: '40px' }}>
+          <h3 className="category-title">📚 Educational Content (Pro Tips)</h3>
+          <div className="workout-grid">
+            {educationalContent.map(edu => (
+              <div key={edu.id} className="workout-card">
+                <div className="workout-icon">{edu.icon}</div>
+                <h3>{edu.title}</h3>
+                <p className="workout-desc">{edu.desc}</p>
+                <div className="workout-footer">
+                  <span className="duration">⏱️ {edu.duration}</span>
+                  {/* Class 'intensity Low' digunakan agar warna badge mengikuti style CSS Low Impact */}
+                  <span className="intensity Low">{edu.intensity}</span>
+                </div>
+                <button className="start-btn" onClick={() => window.open(edu.link, '_blank')}>Watch Tutorial</button>
+              </div>
+            ))}
+          </div>
+        </div>
                 </div>
             </div>
         )
