@@ -5,15 +5,15 @@ function App() {
   const [activeTab, setActiveTab] = useState('home')
   const [selectedRecipe, setSelectedRecipe] = useState(null)
   
-  // Auth State
+  // auth State
   const [user, setUser] = useState(null) 
   const [showAuthModal, setShowAuthModal] = useState(false)
   const [authMode, setAuthMode] = useState('login')
   
-  // Form State (Login/Register)
+  // form State (login/register)
   const [formData, setFormData] = useState({ username: '', email: '', password: '' })
   
-  // Data State
+  // data State
   const [userProgress, setUserProgress] = useState(null)
   const [userSchedule, setUserSchedule] = useState([])
   const [foodCategory, setFoodCategory] = useState('All')
@@ -23,27 +23,99 @@ function App() {
   const [editProgress, setEditProgress] = useState(false) // Mode edit progress
   const [tempProgress, setTempProgress] = useState({}) // Menampung inputan progress sementara
 
-  // State air minum
+  // state air minum
   const [waterCount, setWaterCount] = useState(0)
 
-  // --- DATA STATIC ---
+  // DATA STATIC
   const workouts = [
-    { id: 1, title: 'Candle Workout', duration: '15 min', intensity: 'Low', icon: '🕯️', desc: 'Relaxing yoga & breathing.', category: 'exercise' },
-    { id: 2, title: 'Morning Energizer', duration: '20 min', intensity: 'Medium', icon: '☀️', desc: 'Full body wake up routine.', category: 'workout' },
-    { id: 3, title: 'HIIT Burn', duration: '25 min', intensity: 'High', icon: '🔥', desc: 'High intensity cardio.', category: 'workout' },
-    { id: 4, title: 'Yoga Flow', duration: '30 min', intensity: 'Low', icon: '🧘', desc: 'Flexibility & stress relief.', category: 'exercise' },
+    { 
+      id: 1, 
+      title: 'Candle Workout', 
+      duration: '15 min', 
+      intensity: 'Low', 
+      icon: '🕯️', 
+      desc: 'Relaxing yoga & breathing.', 
+      category: 'exercise', 
+      link: 'https://youtu.be/VCcar3MA07w?si=-kXjE09vmKbAvWYB' 
+    },
+    { 
+      id: 2, 
+      title: 'Morning Energizer', 
+      duration: '20 min', 
+      intensity: 'Medium', 
+      icon: '☀️', 
+      desc: 'Full body wake up routine.', 
+      category: 'workout', 
+      link: 'https://www.youtube.com/watch?v=v7AYKMP6rOE' 
+    },
+    { 
+      id: 3, 
+      title: 'HIIT Burn', 
+      duration: '30 min', 
+      intensity: 'High', 
+      icon: '🔥', 
+      desc: 'High intensity cardio.', 
+      category: 'workout', 
+      link: 'https://www.youtube.com/watch?v=ml6cT4AZdqI' 
+    },
+    { 
+      id: 4, 
+      title: 'Yoga Flow', 
+      duration: '25 min', 
+      intensity: 'Low', 
+      icon: '🧘', 
+      desc: 'Flexibility & stress relief.', 
+      category: 'exercise', 
+      link: 'https://www.youtube.com/watch?v=Eml2xnoLpYE' 
+    },
   ]
 
   const healthyRecipes = [
-    { id: 1, name: 'Nasi Merah + Tumis Kangkung', calories: '280 kalori', prepTime: '20 menit', difficulty: 'Mudah', icon: '🍚', category: 'Makanan Pokok', type: 'Lunch', description: 'Nasi merah sehat dengan tumis kangkung.', ingredients: ['100g nasi merah', '1 ikat kangkung', 'Bawang putih'], steps: ['Tumis bumbu', 'Masak kangkung', 'Sajikan'], tips: 'Jangan overcooked.' },
-    { id: 2, name: 'Smoothie Berry', calories: '120 kalori', prepTime: '5 menit', difficulty: 'Mudah', icon: '🥤', category: 'Minuman', type: 'Drink', description: 'Minuman segar antioksidan.', ingredients: ['Berry', 'Yoghurt', 'Madu'], steps: ['Blender semua'], tips: 'Pakai buah beku.' },
-    { id: 3, name: 'Oatmeal Pisang', calories: '200 kalori', prepTime: '10 menit', difficulty: 'Mudah', icon: '🥣', category: 'Sarapan', type: 'Breakfast', description: 'Sarapan kaya serat.', ingredients: ['Oat', 'Susu', 'Pisang'], steps: ['Masak oat', 'Toping pisang'], tips: 'Tambah chia seeds.' },
-    { id: 4, name: 'Ayam Bakar Kuning', calories: '250 kalori', prepTime: '40 menit', difficulty: 'Sedang', icon: '🍗', category: 'Lauk Protein', type: 'Dinner', description: 'Ayam bakar tanpa minyak.', ingredients: ['Ayam', 'Kunyit', 'Jahe'], steps: ['Ungkep', 'Panggang'], tips: 'Pakai teflon.' },
-    { id: 5, name: 'Salad Telur', calories: '180 kalori', prepTime: '15 menit', difficulty: 'Mudah', icon: '🥗', category: 'Sayuran', type: 'Dinner', description: 'Salad segar protein.', ingredients: ['Selada', 'Telur', 'Tomat'], steps: ['Potong', 'Campur'], tips: 'Dressing lemon.' }
+    { 
+      id: 1, name: 'Nasi Merah + Tumis Kangkung', calories: '280 kalori', prepTime: '20 menit', difficulty: 'Mudah', icon: '🍚', category: 'Makanan Pokok', type: 'Lunch', 
+      description: 'Nasi merah sehat dengan tumis kangkung rendah minyak.', 
+      ingredients: ['100g nasi merah', '1 ikat kangkung', '2 siung bawang putih', 'Sedikit garam & kaldu jamur'], 
+      steps: ['Masak nasi merah hingga matang.', 'Tumis bawang putih dengan sedikit minyak zaitun.', 'Masukkan kangkung, beri sedikit air dan bumbu.', 'Sajikan selagi hangat.'], 
+      tips: 'Jangan masak kangkung terlalu lama agar tetap renyah.' 
+    },
+    { 
+      id: 2, name: 'Smoothie Berry Yogurt', calories: '120 kalori', prepTime: '5 menit', difficulty: 'Mudah', icon: '🥤', category: 'Minuman', type: 'Drink', 
+      description: 'Minuman segar kaya antioksidan.', 
+      ingredients: ['50g blueberry/strawberry', '150ml Greek yogurt', '1 sdt madu'], 
+      steps: ['Cuci bersih semua buah.', 'Masukkan semua bahan ke dalam blender.', 'Blender hingga halus.', 'Tuang ke gelas dan sajikan dingin.'], 
+      tips: 'Gunakan buah beku agar tekstur lebih kental.' 
+    },
+    { 
+      id: 3, name: 'Oatmeal Pisang Kayu Manis', calories: '200 kalori', prepTime: '10 menit', difficulty: 'Mudah', icon: '🥣', category: 'Sarapan', type: 'Breakfast', 
+      description: 'Sarapan kaya serat yang bikin kenyang lebih lama.', 
+      ingredients: ['4 sdm rolled oat', '200ml susu rendah lemak', '1 buah pisang', 'Sedikit kayu manis bubuk'], 
+      steps: ['Masak oat dengan susu hingga tekstur menjadi bubur.', 'Iris pisang tipis-tipis.', 'Letakkan oat di mangkuk, hiasi dengan pisang.', 'Taburkan kayu manis bubuk di atasnya.'], 
+      tips: 'Tambah chia seeds untuk tambahan protein.' 
+    },
+    { 
+      id: 4, name: 'Salad Telur Rebus', calories: '180 kalori', prepTime: '15 menit', difficulty: 'Mudah', icon: '🥗', category: 'Sayuran', type: 'Dinner', 
+      description: 'Salad segar praktis untuk makan malam ringan.', 
+      ingredients: ['2 butir telur rebus', 'Selada secukupnya', 'Tomat ceri', 'Perasan jeruk lemon'], 
+      steps: ['Potong selada dan tomat ceri sesuai selera.', 'Kupas telur rebus dan belah menjadi dua.', 'Campurkan semua bahan di mangkuk.', 'Siram dengan perasan lemon sebagai dressing.'], 
+      tips: 'Jangan gunakan mayones berlebihan jika sedang diet ketat.' 
+    },
+    { 
+      id: 5, name: 'Dada Ayam Panggang', calories: '250 kalori', prepTime: '30 menit', difficulty: 'Sedang', icon: '🍗', category: 'Lauk Protein', type: 'Dinner', 
+      description: 'Protein tinggi tanpa digoreng.', 
+      ingredients: ['150g dada ayam fillet', 'Lada hitam & garam', 'Bawang putih bubuk'], 
+      steps: ['Marinasi ayam dengan lada, garam, dan bawang putih selama 10 menit.', 'Panaskan teflon anti lengket.', 'Panggang ayam hingga berubah warna kecokelatan di kedua sisi.', 'Pastikan bagian dalam matang sempurna.'], 
+      tips: 'Panggang dengan api sedang agar tidak keras.' 
+    },
+    { 
+      id: 6, name: 'Infused Water Lemon', calories: '10 kalori', prepTime: '5 menit', difficulty: 'Mudah', icon: '🍋', category: 'Minuman', type: 'Drink', 
+      description: 'Detoks alami untuk membakar lemak.', 
+      ingredients: ['500ml air mineral', '1/2 buah lemon', 'Beberapa lembar daun mint'], 
+      steps: ['Iris tipis buah lemon.', 'Masukkan lemon dan daun mint ke dalam botol air.', 'Simpan di kulkas minimal 2 jam.', 'Minum sepanjang hari.'], 
+      tips: 'Jangan diamkan lebih dari 24 jam agar tidak pahit.' 
+    }
   ]
 
   // API ACTIONS 
-
   const handleAuth = async (e) => {
     e.preventDefault();
     const endpoint = authMode === 'login' ? `http://localhost:5000/api/login` : `http://localhost:5000/api/register`;
@@ -158,15 +230,35 @@ function App() {
               </div>
             </div>
             {selectedRecipe && (
-                 <div className="modal-overlay" onClick={() => setSelectedRecipe(null)}>
-                 <div className="modal-content" onClick={(e) => e.stopPropagation()}>
-                   <button className="close-btn" onClick={() => setSelectedRecipe(null)}>×</button>
-                   <h2>{selectedRecipe.name}</h2>
-                   <p>{selectedRecipe.description}</p>
-                   <div className="recipe-section"><h3>📝 Bahan:</h3><ul>{selectedRecipe.ingredients.map((item, i) => <li key={i}>{item}</li>)}</ul></div>
-                 </div>
-               </div>
-            )}
+            <div className="modal-overlay" onClick={() => setSelectedRecipe(null)}>
+              <div className="modal-content" onClick={(e) => e.stopPropagation()} style={{maxHeight: '80vh', overflowY: 'auto'}}>
+                <button className="close-btn" onClick={() => setSelectedRecipe(null)}>×</button>
+                <h2>{selectedRecipe.icon} {selectedRecipe.name}</h2>
+                <p style={{color: '#666', marginBottom: '20px'}}>{selectedRecipe.description}</p>
+                
+                {/* Bagian Bahan */}
+                <div className="recipe-section">
+                  <h3>📝 Bahan-bahan:</h3>
+                  <ul>
+                    {selectedRecipe.ingredients.map((item, i) => <li key={i}>{item}</li>)}
+                  </ul>
+                </div>
+
+                {/* Bagian Langkah-langkah */}
+                <div className="recipe-section" style={{marginTop: '20px'}}>
+                  <h3>👩‍🍳 Langkah Memasak:</h3>
+                  <ol>
+                    {selectedRecipe.steps.map((step, i) => <li key={i} style={{marginBottom: '8px'}}>{step}</li>)}
+                  </ol>
+                </div>
+
+                {/* Bagian Tips */}
+                <div className="recipe-tips" style={{marginTop: '20px', padding: '10px', background: '#f9f9f9', borderRadius: '8px'}}>
+                  <p><b>💡 Tips:</b> {selectedRecipe.tips}</p>
+                </div>
+              </div>
+            </div>
+          )}
           </div>
         )
       
@@ -189,7 +281,7 @@ function App() {
                                         <span className="duration">⏱️ {w.duration}</span>
                                         <span className={`intensity ${w.intensity}`}>{w.intensity}</span>
                                     </div>
-                                    <button className="start-btn">Watch Tutorial</button>
+                                    <button className="start-btn" onClick={() => window.open(w.link, '_blank')}>Watch Tutorial</button>
                                 </div>
                             ))}
                         </div>
@@ -207,7 +299,7 @@ function App() {
                                         <span className="duration">⏱️ {w.duration}</span>
                                         <span className={`intensity ${w.intensity}`}>{w.intensity}</span>
                                     </div>
-                                    <button className="start-btn">Watch Tutorial</button>
+                                    <button className="start-btn" onClick={() => window.open(w.link, '_blank')}>Watch Tutorial</button>
                                 </div>
                             ))}
                         </div>

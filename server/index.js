@@ -16,8 +16,7 @@ const pool = new Pool({
   database: 'dietify_db',
   password: 'admin1234', 
   port: 5432,
-});
-
+})
 
 app.post('/api/register', async (req, res) => {
   const { username, email, password } = req.body;
@@ -94,5 +93,5 @@ app.put('/api/progress', async (req, res) => {
 });
 
 app.listen(port, () => {
-  console.log('Server berjalan di port ${port}');
+  console.log(`Server berjalan di port ${port}`);
 });
