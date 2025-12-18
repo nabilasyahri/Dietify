@@ -312,6 +312,10 @@ function App() {
       case 'schedule':
         return (
             <div className="page-content">
+              <div className="welcome-header" style={{marginBottom: '20px'}}>
+                <h2>Hi, {user?.username || 'User'}! 👋</h2>
+                <p>This is your plan for the week.</p>
+              </div>
                 <div className="container">
                     <h2 className="section-title">📅 Your Weekly Schedule</h2>
                     
@@ -377,13 +381,13 @@ function App() {
         const WORKOUT_TARGET = 20; 
         const CALORIE_TARGET = 5000;
         
-        // --- LOGIKA BARU YANG LEBIH PINTAR ---
+        // LOGIKA 
         const currentW = Number(userProgress?.current_weight || 0);
         const goalW = Number(userProgress?.weight_goal || 0);
         
         let weightStatus = "";
         let weightPercent = 0;
-        let barColor = "var(--primary)"; // Default hijau
+        let barColor = "var(--primary)"; 
 
         // Skenario 1: Belum isi data
         if (currentW === 0 || goalW === 0) {
@@ -400,11 +404,11 @@ function App() {
             const diff = currentW - goalW; // Contoh: 50 - 48 = 2kg
             weightStatus = `${diff.toFixed(1)} kg to go`; 
 
-            // RUMUS PINTAR: Semakin dekat (selisih kecil), persen semakin besar.
+            // RUMUS: Semakin dekat (selisih kecil), persen semakin besar.
             // Kita anggap "Selisih 20kg" itu titik nol (0%).
             // Jadi kalau selisih cuma 2kg, persennya tinggi.
             // Rumus: 100 - (Selisih * 5)
-            // Contoh kamu (50 - 48 = 2): 100 - (2 * 5) = 90% (HIJAU TEBAL!)
+            // Contoh (50 - 48 = 2): 100 - (2 * 5) = 90% (HIJAU TEBAL!)
             
             let calculatedPercent = 100 - (diff * 5); 
             if (calculatedPercent < 5) calculatedPercent = 5; // Minimal 5% biar ada isinya dikit
@@ -426,9 +430,13 @@ function App() {
 
         return (
             <div className="page-content">
+              <div className="welcome-header">
+              <h2>Hi, {user?.username || 'User'}! 👋</h2>
+              <p>Here's your fitness journey so far.</p>
+            </div>
                 <div className="container">
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px', marginBottom: '20px'}}>
-                        <h2 className="section-title" style={{marginBottom: 0}}>📊 Your Progress</h2>
+                        <h2 className="section-title" style={{marginTop: 0}}>📊 Your Progress</h2>
                         {!editProgress ? (
                             <button className="btn btn-secondary" style={{fontSize: '0.8rem', padding: '5px 15px'}} onClick={() => setEditProgress(true)}>✏️ Edit Data</button>
                         ) : (
