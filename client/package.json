@@ -2,8 +2,7 @@
   "name": "dietify",
   "private": true,
   "version": "0.0.0",
-  "type": "module",
-  "old_homepage": "https://nabilasyahri.github.io/Dietify/", 
+  "type": "module", 
   "scripts": {
     "dev": "vite",
     "build": "vite build",
