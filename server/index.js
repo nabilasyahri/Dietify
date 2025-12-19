@@ -4,19 +4,20 @@ const { Pool } = require('pg');
 const bodyParser = require('body-parser');
 
 const app = express();
-const port = 5000;
+
+// Port dinamis untuk Railway, kalau di lokal pakai 5000
+const port = process.env.PORT || 5000;
 
 app.use(cors());
 app.use(bodyParser.json());
 
-// KONFIGURASI DATABASE
+// KONFIGURASI DATABASE (pakai DATABASE_URL dari railway)
 const pool = new Pool({
-  user: 'postgres',
-  host: 'localhost',
-  database: 'dietify_db',
-  password: 'admin1234', 
-  port: 5432,
-})
+  connectionString: process.env.DATABASE_URL,
+  ssl: {
+    rejectUnauthorized: false // untuk neon
+  }
+});
 
 app.post('/api/register', async (req, res) => {
   const { username, email, password } = req.body;
@@ -25,6 +26,7 @@ app.post('/api/register', async (req, res) => {
       'INSERT INTO users (username, email, password) VALUES ($1, $2, $3) RETURNING *',
       [username, email, password]
     );
+    // Pastikan tabel progress sudah kamu buat di Neon SQL Editor tadi
     await pool.query('INSERT INTO progress (user_id, weight_goal, current_weight, workouts_completed, calories_burned) VALUES ($1, 0, 0, 0, 0)', [newUser.rows[0].id]);
     
     res.json(newUser.rows[0]);
@@ -90,6 +92,11 @@ app.put('/api/progress', async (req, res) => {
         console.error(err.message);
         res.status(500).send('Gagal update progress');
     }
+});
+
+// Route pengetesan agar kamu tahu server jalan
+app.get("/", (req, res) => {
+  res.send("Backend Dietify Berhasil Jalan di Railway!");
 });
 
 app.listen(port, () => {

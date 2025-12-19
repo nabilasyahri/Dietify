@@ -250,7 +250,7 @@ const handleCalculateBMI = (e) => {
   // API ACTIONS 
   const handleAuth = async (e) => {
     e.preventDefault();
-    const endpoint = authMode === 'login' ? `http://localhost:5000/api/login` : `http://localhost:5000/api/register`;
+    const endpoint = authMode === 'login' ? `https://dietify-production.up.railway.app/api/login` : `https://dietify-production.up.railway.app/api/register`;
     try {
       const response = await fetch(endpoint, {
         method: 'POST',
@@ -271,13 +271,13 @@ const handleCalculateBMI = (e) => {
 
   const fetchUserData = async (userId) => {
     try {
-        const resProgress = await fetch(`http://localhost:5000/api/progress/${userId}`);
+        const resProgress = await fetch(`https://dietify-production.up.railway.app/api/progress/${userId}`);
         if(resProgress.ok) {
             const data = await resProgress.json();
             setUserProgress(data);
             setTempProgress(data); // Set data awal untuk form edit
         }
-        const resSchedule = await fetch(`http://localhost:5000/api/schedule/${userId}`);
+        const resSchedule = await fetch(`https://dietify-production.up.railway.app/api/schedule/${userId}`);
         if(resSchedule.ok) {
             const data = await resSchedule.json();
             setUserSchedule(data);
@@ -289,7 +289,7 @@ const handleCalculateBMI = (e) => {
   const handleAddSchedule = async (e) => {
       e.preventDefault();
       try {
-          const res = await fetch('http://localhost:5000/api/schedule', {
+          const res = await fetch('https://dietify-production.up.railway.app/api/schedule', {
               method: 'POST',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({
@@ -312,7 +312,7 @@ const handleCalculateBMI = (e) => {
   // FUNCTION: UPDATE PROGRESS
   const handleUpdateProgress = async () => {
       try {
-          const res = await fetch('http://localhost:5000/api/progress', {
+          const res = await fetch('https://dietify-production.up.railway.app/api/progress', {
               method: 'PUT',
               headers: { 'Content-Type': 'application/json' },
               body: JSON.stringify({ ...tempProgress, user_id: user.id })
