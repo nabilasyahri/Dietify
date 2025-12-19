@@ -103,6 +103,6 @@ app.get("/", (req, res) => {
   res.send("Backend Dietify Berhasil Jalan di Railway!");
 });
 
-app.listen(port, "0.0.0.0", () => {
+app.listen(port, () => {
   console.log(`Server berjalan di port ${port}`);
 });
