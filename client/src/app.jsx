@@ -266,7 +266,10 @@ const handleCalculateBMI = (e) => {
       } else {
         alert(typeof data === 'string' ? data : 'Gagal login/register');
       }
-    } catch (error) { alert("Cek Backend Server!"); }
+    } catch (err) {
+    console.error("DETAIL ERROR:", err); // Biar muncul di log Railway
+    res.status(500).json({ error: err.message, detail: err.stack }); // Kirim detail ke browser
+}
   };
 
   const fetchUserData = async (userId) => {
