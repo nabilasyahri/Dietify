@@ -224,23 +224,28 @@ function App() {
   ]
 
   // Fungsi untuk menghitung BMI
-const calculateBMI = (weight, heightCm) => {
-  if (!weight || !heightCm) return null;
-  const heightMeters = heightCm / 100;
-  const bmi = (weight / (heightMeters * heightMeters)).toFixed(1);
-  
-  let status = "";
-  let color = "";
-  
-  if (bmi < 18.5) { status = "Underweight"; color = "#3498db"; }
-  else if (bmi < 25) { status = "Normal"; color = "#2ecc71"; }
-  else if (bmi < 30) { status = "Overweight"; color = "#f1c40f"; }
-  else { status = "Obese"; color = "#e74c3c"; }
-  
-  return { value: bmi, status, color };
+const [bmiInput, setBmiInput] = useState({ weight: '', height: '' });
+const [bmiResult, setBmiResult] = useState(null);
+
+const handleCalculateBMI = (e) => {
+  e.preventDefault();
+  const w = parseFloat(bmiInput.weight);
+  const h = parseFloat(bmiInput.height) / 100; // ubah ke meter
+
+  if (w > 0 && h > 0) {
+    const bmiValue = (w / (h * h)).toFixed(1);
+    let status = "";
+    let color = "";
+
+    if (bmiValue < 18.5) { status = "Underweight"; color = "#3498db"; }
+    else if (bmiValue < 25) { status = "Normal"; color = "#2ecc71"; }
+    else if (bmiValue < 30) { status = "Overweight"; color = "#f1c40f"; }
+    else { status = "Obese"; color = "#e74c3c"; }
+
+    setBmiResult({ value: bmiValue, status, color });
+  }
 };
 
-const bmiResult = calculateBMI(userProgress?.current_weight, 170); // Ganti 170 dengan input tinggi badan user nantinya
 
   // API ACTIONS 
   const handleAuth = async (e) => {
@@ -734,6 +739,42 @@ const bmiResult = calculateBMI(userProgress?.current_weight, 170); // Ganti 170 
                 </div>
               </div>
             </section>
+            <section className="container" style={{marginTop: '40px', padding: '0 10%'}}>
+  <div className="card" style={{display: 'flex', flexWrap: 'wrap', gap: '30px', alignItems: 'center', background: '#fff'}}>
+    <div style={{flex: 1, minWidth: '300px'}}>
+      <h2 style={{color: 'var(--primary)'}}>Check Your BMI ⚖️</h2>
+      <p style={{color: '#666'}}>Calculate your Body Mass Index to know your health status.</p>
+      
+      <form onSubmit={handleCalculateBMI} style={{display: 'flex', gap: '10px', marginTop: '20px'}}>
+        <input 
+          type="number" 
+          placeholder="Weight (kg)" 
+          style={{padding: '12px', borderRadius: '8px', border: '1px solid #ddd', flex: 1}}
+          value={bmiInput.weight}
+          onChange={(e) => setBmiInput({...bmiInput, weight: e.target.value})}
+        />
+        <input 
+          type="number" 
+          placeholder="Height (cm)" 
+          style={{padding: '12px', borderRadius: '8px', border: '1px solid #ddd', flex: 1}}
+          value={bmiInput.height}
+          onChange={(e) => setBmiInput({...bmiInput, height: e.target.value})}
+        />
+        <button type="submit" style={{padding: '10px 20px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer'}}>Calculate</button>
+      </form>
+    </div>
+
+    {bmiResult && (
+      <div style={{flex: 1, minWidth: '250px', textAlign: 'center', padding: '20px', borderRadius: '15px', background: '#f9f9f9', borderLeft: `8px solid ${bmiResult.color}`}}>
+        <p style={{margin: 0, fontSize: '0.9rem', color: '#666'}}>Your BMI Result</p>
+        <h1 style={{margin: '10px 0', fontSize: '3rem', color: '#333'}}>{bmiResult.value}</h1>
+        <div style={{display: 'inline-block', padding: '5px 15px', borderRadius: '20px', background: bmiResult.color, color: 'white', fontWeight: 'bold'}}>
+          {bmiResult.status}
+        </div>
+      </div>
+    )}
+  </div>
+</section>
           </>
         )
     }
