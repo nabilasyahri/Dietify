@@ -24,7 +24,7 @@ function App() {
   const [tempProgress, setTempProgress] = useState({}) // Menampung inputan progress sementara
 
   // state air minum
-  const [waterCount, setWaterCount] = useState(0)
+  const [waterCount, setWaterCount] = useState(0);
 
   // DATA STATIC
   const workouts = [
@@ -707,6 +707,7 @@ const handleCalculateBMI = (e) => {
                 <div className="feature-box"><h3>🏃 Sport Guides</h3><p>Workouts tailored for diet.</p></div>
                 <div className="feature-box"><h3>📅 Smart Schedule</h3><p>Organize your plan easily.</p></div>
             </section>
+
             <section className="diet-tips">
               <div className="container">
                 <h2>Today's Diet Tip</h2>
@@ -714,67 +715,81 @@ const handleCalculateBMI = (e) => {
                   <div className="tip-icon">💧</div>
                   <div className="tip-content">
                     <h3>Stay Hydrated</h3>
-                    <p>Drink at least 8 glasses of water today.</p>
+                    <p>Drink at least 2.0L of water today.</p>
                     <div className="water-tracker">
+                      <div style={{ marginBottom: '15px' }}>
+                        {/* logika: waterCount dikali 0.25 untuk mendapatkan angka liter */}
+                        <h2 style={{ color: '#3498db', fontSize: '2.2rem', margin: '0' }}>
+                          {(waterCount * 0.25).toFixed(2)} <span style={{fontSize: '1rem', color: '#666'}}> / 2.00 L</span>
+                        </h2>
+                      </div>
+                      
                       <div className="water-bottles">
-                        {[1,2,3,4,5,6,7,8].map((num) => (
+                        {[1, 2, 3, 4, 5, 6, 7, 8].map((num) => (
                           <div 
                             key={num} 
-                            // Logika warna: Jika nomor botol <= jumlah minum, jadi biru
                             className={`water-bottle ${num <= waterCount ? 'filled' : ''}`}
-                            // Logika klik: Ubah jumlah minum sesuai botol yg diklik
+                            // klik botol ke-4, maka waterCount jadi 4 (4 * 0.25 = 1.00L)
                             onClick={() => setWaterCount(num)}
-                            style={{cursor: 'pointer'}}
+                            style={{ cursor: 'pointer' }}
                           ></div>
                         ))}
                       </div>
-                      <p><b>{waterCount}</b>/8 glasses today</p>
+                      
+                      <p><b>{waterCount}</b> of 8 steps completed</p>
                       <p style={{fontSize: '0.8rem', color: '#666', marginTop: '5px'}}>
-                        {waterCount >= 8 ? "Great job! You're fully hydrated! 💧" : "Keep drinking!"}
+                        {waterCount >= 8 ? "Great job! You've reached 2 Liters! 💧" : "Click the bottles to track your water"}
                       </p>
+                      
+                      {/* tombol Reset tambahan*/}
+                      <button 
+                        onClick={() => setWaterCount(0)}
+                        style={{marginTop: '10px', background: 'none', border: 'none', color: '#999', cursor: 'pointer', fontSize: '0.7rem', textDecoration: 'underline'}}
+                      >
+                        Reset Daily Intake
+                      </button>
                     </div>
-                    {/* ------------------------- */}
-
                   </div>
                 </div>
               </div>
             </section>
-            <section className="container" style={{marginTop: '40px', padding: '0 10%'}}>
-  <div className="card" style={{display: 'flex', flexWrap: 'wrap', gap: '30px', alignItems: 'center', background: '#fff'}}>
-    <div style={{flex: 1, minWidth: '300px'}}>
-      <h2 style={{color: 'var(--primary)'}}>Check Your BMI ⚖️</h2>
-      <p style={{color: '#666'}}>Calculate your Body Mass Index to know your health status.</p>
-      
-      <form onSubmit={handleCalculateBMI} style={{display: 'flex', gap: '10px', marginTop: '20px'}}>
-        <input 
-          type="number" 
-          placeholder="Weight (kg)" 
-          style={{padding: '12px', borderRadius: '8px', border: '1px solid #ddd', flex: 1}}
-          value={bmiInput.weight}
-          onChange={(e) => setBmiInput({...bmiInput, weight: e.target.value})}
-        />
-        <input 
-          type="number" 
-          placeholder="Height (cm)" 
-          style={{padding: '12px', borderRadius: '8px', border: '1px solid #ddd', flex: 1}}
-          value={bmiInput.height}
-          onChange={(e) => setBmiInput({...bmiInput, height: e.target.value})}
-        />
-        <button type="submit" style={{padding: '10px 20px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer'}}>Calculate</button>
-      </form>
-    </div>
 
-    {bmiResult && (
-      <div style={{flex: 1, minWidth: '250px', textAlign: 'center', padding: '20px', borderRadius: '15px', background: '#f9f9f9', borderLeft: `8px solid ${bmiResult.color}`}}>
-        <p style={{margin: 0, fontSize: '0.9rem', color: '#666'}}>Your BMI Result</p>
-        <h1 style={{margin: '10px 0', fontSize: '3rem', color: '#333'}}>{bmiResult.value}</h1>
-        <div style={{display: 'inline-block', padding: '5px 15px', borderRadius: '20px', background: bmiResult.color, color: 'white', fontWeight: 'bold'}}>
-          {bmiResult.status}
-        </div>
-      </div>
-    )}
-  </div>
-</section>
+            <section className="container" style={{marginTop: '40px', padding: '0 10%'}}>
+              <div className="card" style={{display: 'flex', flexWrap: 'wrap', gap: '30px', alignItems: 'center', background: '#fff'}}>
+                <div style={{flex: 1, minWidth: '300px'}}>
+                  <h2 style={{color: 'var(--primary)'}}>Check Your BMI ⚖️</h2>
+                  <p style={{color: '#666'}}>Calculate your Body Mass Index to know your health status.</p>
+                  
+                  <form onSubmit={handleCalculateBMI} style={{display: 'flex', gap: '10px', marginTop: '20px'}}>
+                    <input 
+                      type="number" 
+                      placeholder="Weight (kg)" 
+                      style={{padding: '12px', borderRadius: '8px', border: '1px solid #ddd', flex: 1}}
+                      value={bmiInput.weight}
+                      onChange={(e) => setBmiInput({...bmiInput, weight: e.target.value})}
+                    />
+                    <input 
+                      type="number" 
+                      placeholder="Height (cm)" 
+                      style={{padding: '12px', borderRadius: '8px', border: '1px solid #ddd', flex: 1}}
+                      value={bmiInput.height}
+                      onChange={(e) => setBmiInput({...bmiInput, height: e.target.value})}
+                    />
+                    <button type="submit" style={{padding: '10px 20px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer'}}>Calculate</button>
+                  </form>
+                </div>
+
+                {bmiResult && (
+                  <div style={{flex: 1, minWidth: '250px', textAlign: 'center', padding: '20px', borderRadius: '15px', background: '#f9f9f9', borderLeft: `8px solid ${bmiResult.color}`}}>
+                    <p style={{margin: 0, fontSize: '0.9rem', color: '#666'}}>Your BMI Result</p>
+                    <h1 style={{margin: '10px 0', fontSize: '3rem', color: '#333'}}>{bmiResult.value}</h1>
+                    <div style={{display: 'inline-block', padding: '5px 15px', borderRadius: '20px', background: bmiResult.color, color: 'white', fontWeight: 'bold'}}>
+                      {bmiResult.status}
+                    </div>
+                  </div>
+                )}
+              </div>
+            </section>
           </>
         )
     }
