@@ -752,7 +752,9 @@ const handleCalculateBMI = (e) => {
                 </div>
               </div>
             </section>
-            <section className="container" style={{marginTop: '40px', padding: '0 10%'}}>
+
+            
+<section className="container" style={{marginTop: '40px', padding: '0 10%'}}>
   <div className="card" style={{display: 'flex', flexWrap: 'wrap', gap: '30px', alignItems: 'center', background: '#fff'}}>
     <div style={{flex: 1, minWidth: '300px'}}>
       <h2 style={{color: 'var(--primary)'}}>Check Your BMI ⚖️</h2>
@@ -773,17 +775,52 @@ const handleCalculateBMI = (e) => {
           value={bmiInput.height}
           onChange={(e) => setBmiInput({...bmiInput, height: e.target.value})}
         />
-        <button type="submit" style={{padding: '10px 20px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer'}}>Calculate</button>
+        <button type="submit" style={{padding: '10px 20px', background: 'var(--primary)', color: 'white', border: 'none', borderRadius: '8px', cursor: 'pointer'}}>
+          {bmiResult ? 'Recalculate' : 'Calculate'}
+        </button>
       </form>
     </div>
 
     {bmiResult && (
-      <div style={{flex: 1, minWidth: '250px', textAlign: 'center', padding: '20px', borderRadius: '15px', background: '#f9f9f9', borderLeft: `8px solid ${bmiResult.color}`}}>
-        <p style={{margin: 0, fontSize: '0.9rem', color: '#666'}}>Your BMI Result</p>
+      <div style={{flex: 1, minWidth: '250px', textAlign: 'center', padding: '20px', borderRadius: '15px', background: '#f9f9f9', borderLeft: `8px solid ${bmiResult.color}`, position: 'relative'}}>
+        {/* X/Cancel Button */}
+        <button 
+          onClick={() => setBmiResult(null)}
+          style={{
+            position: 'absolute',
+            top: '10px',
+            right: '10px',
+            background: 'none',
+            border: 'none',
+            fontSize: '18px',
+            cursor: 'pointer',
+            color: '#999',
+            width: '30px',
+            height: '30px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            borderRadius: '50%',
+            transition: 'all 0.2s'
+          }}
+          onMouseOver={(e) => {
+            e.target.style.background = '#f0f0f0';
+            e.target.style.color = '#333';
+          }}
+          onMouseOut={(e) => {
+            e.target.style.background = 'none';
+            e.target.style.color = '#999';
+          }}
+        >
+          ×
+        </button>
+        
+        <p style={{margin: '0 0 10px 0', fontSize: '0.9rem', color: '#666'}}>Your BMI Result</p>
         <h1 style={{margin: '10px 0', fontSize: '3rem', color: '#333'}}>{bmiResult.value}</h1>
-        <div style={{display: 'inline-block', padding: '5px 15px', borderRadius: '20px', background: bmiResult.color, color: 'white', fontWeight: 'bold'}}>
+        <div style={{display: 'inline-block', padding: '5px 15px', borderRadius: '20px', background: bmiResult.color, color: 'white', fontWeight: 'bold', marginBottom: '10px'}}>
           {bmiResult.status}
         </div>
+        <p style={{fontSize: '0.8rem', color: '#666', marginTop: '10px'}}>Click X to clear and recalculate</p>
       </div>
     )}
   </div>
