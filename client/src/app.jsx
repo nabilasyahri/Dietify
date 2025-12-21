@@ -580,7 +580,7 @@ const handleCalculateBMI = (e) => {
         // Overall Score (Rata-rata)
         const totalProgress = Math.round((weightPercent + workoutPercent + caloriePercent) / 3);
 
-        return (
+                return (
             <div className="page-content">
               <div className="welcome-header">
               <h2>Hi, {user?.username || 'User'}! 👋</h2>
@@ -589,8 +589,20 @@ const handleCalculateBMI = (e) => {
                 <div className="container">
                     <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center', gap: '15px', marginBottom: '20px'}}>
                         <h2 className="section-title" style={{marginTop: 0}}>📊 Your Progress</h2>
+                        
+                        {/* TOMBOL BERUBAH TULISANNYA BERDASARKAN APAKAH SUDAH ADA DATA */}
                         {!editProgress ? (
-                            <button className="btn btn-secondary" style={{fontSize: '0.8rem', padding: '5px 15px'}} onClick={() => setEditProgress(true)}>✏️ Edit Data</button>
+                            <button 
+                                className="btn btn-secondary" 
+                                style={{
+                                    fontSize: '0.8rem', 
+                                    padding: '5px 15px'
+                                }} 
+                                onClick={() => setEditProgress(true)}
+                            >
+                                {/* TULISAN BERUBAH: Set Goals jika kosong, Edit Goals jika sudah ada data */}
+                                {(currentW > 0 && goalW > 0) ? '✏️ Edit Goals' : '✏️ Set Goals'}
+                            </button>
                         ) : (
                             <div style={{display: 'flex', gap: '5px'}}>
                                 <button className="btn btn-primary" style={{fontSize: '0.8rem'}} onClick={handleUpdateProgress}>💾 Save</button>
@@ -820,7 +832,7 @@ const handleCalculateBMI = (e) => {
         <div style={{display: 'inline-block', padding: '5px 15px', borderRadius: '20px', background: bmiResult.color, color: 'white', fontWeight: 'bold', marginBottom: '10px'}}>
           {bmiResult.status}
         </div>
-        <p style={{fontSize: '0.8rem', color: '#666', marginTop: '10px'}}>Click X to clear and recalculate</p>
+        <p style={{fontSize: '0.8rem', color: '#666', marginTop: '10px'}}></p>
       </div>
     )}
   </div>
